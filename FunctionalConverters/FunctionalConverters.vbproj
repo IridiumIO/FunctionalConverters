@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>FunctionalConverters</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>FunctionalConverters</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Functional Converters</Title>
+    <Description>Create IValueConverters in WPF more easily using functional declarations</Description>
+    <Company>IridiumIO</Company>
+    <Authors>IridiumIO</Authors>
+    <PackageProjectUrl>github.com/iridiumio/functionalconverters</PackageProjectUrl>
+    <RepositoryUrl>github.com/iridiumio/functionalconverters</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>WPF;converters;</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <AssemblyVersion>0.1</AssemblyVersion>
+    <FileVersion>0.1</FileVersion>
+    <Version>0.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+</Project>
