@@ -28,26 +28,26 @@ Public MustInherit Class ExtensibleConverter : Inherits MarkupExtension
 
     End Function
 
-    Protected Shared Function CreateConverter(Of TInput, TOutput)(convert As Func(Of TInput, Object, TOutput), Optional convertBack As Func(Of TOutput, Object, TInput) = Nothing) As SingleConverter(Of TInput, TOutput)
-        Return New SingleConverter(Of TInput, TOutput)(convert, convertBack)
+    Protected Shared Function CreateConverter(Of TInput, TOutput)(convertFunction As Func(Of TInput, Object, TOutput), Optional convertBackFunction As Func(Of TOutput, Object, TInput) = Nothing) As SingleConverter(Of TInput, TOutput)
+        Return New SingleConverter(Of TInput, TOutput)(convertFunction, convertBackFunction)
     End Function
 
-    Protected Shared Function CreateConverter(Of TInput, TOutput)(convert As Func(Of TInput, TOutput), Optional convertBack As Func(Of TOutput, TInput) = Nothing) As SingleConverter(Of TInput, TOutput)
+    Protected Shared Function CreateConverter(Of TInput, TOutput)(convertFunction As Func(Of TInput, TOutput), Optional convertBackFunction As Func(Of TOutput, TInput) = Nothing) As SingleConverter(Of TInput, TOutput)
         ' Wrap the simpler version into the parameterized version
-        Dim wrappedConvert = Function(input As TInput, parameter As Object) convert(input)
-        Dim wrappedConvertBack = If(convertBack IsNot Nothing, Function(output As TOutput, parameter As Object) convertBack(output), Nothing)
+        Dim wrappedConvert = Function(input As TInput, parameter As Object) convertFunction(input)
+        Dim wrappedConvertBack = If(convertBackFunction IsNot Nothing, Function(output As TOutput, parameter As Object) convertBackFunction(output), Nothing)
         Return New SingleConverter(Of TInput, TOutput)(wrappedConvert, wrappedConvertBack)
     End Function
 
 
-    Protected Shared Function CreateMultiConverter(Of TInput, TOutput)(convert As Func(Of TInput(), Object, TOutput), Optional convertBack As Func(Of TOutput, Object, TInput()) = Nothing) As MultiConverter(Of TInput, TOutput)
-        Return New MultiConverter(Of TInput, TOutput)(convert, convertBack)
+    Protected Shared Function CreateMultiConverter(Of TInput, TOutput)(convertFunction As Func(Of TInput(), Object, TOutput), Optional convertBackFunction As Func(Of TOutput, Object, TInput()) = Nothing) As MultiConverter(Of TInput, TOutput)
+        Return New MultiConverter(Of TInput, TOutput)(convertFunction, convertBackFunction)
     End Function
 
-    Protected Shared Function CreateMultiConverter(Of TInput, TOutput)(convert As Func(Of TInput(), TOutput), Optional convertBack As Func(Of TOutput, TInput()) = Nothing) As MultiConverter(Of TInput, TOutput)
+    Protected Shared Function CreateMultiConverter(Of TInput, TOutput)(convertFunction As Func(Of TInput(), TOutput), Optional convertBackFunction As Func(Of TOutput, TInput()) = Nothing) As MultiConverter(Of TInput, TOutput)
         ' Wrap the simpler version into the parameterized version
-        Dim wrappedConvert = Function(inputs As TInput(), parameter As Object) convert(inputs)
-        Dim wrappedConvertBack = If(convertBack IsNot Nothing, Function(output As TOutput, parameter As Object) convertBack(output), Nothing)
+        Dim wrappedConvert = Function(inputs As TInput(), parameter As Object) convertFunction(inputs)
+        Dim wrappedConvertBack = If(convertBackFunction IsNot Nothing, Function(output As TOutput, parameter As Object) convertBackFunction(output), Nothing)
         Return New MultiConverter(Of TInput, TOutput)(wrappedConvert, wrappedConvertBack)
     End Function
 

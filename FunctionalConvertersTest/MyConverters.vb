@@ -15,8 +15,8 @@ Public Class MyConverters : Inherits ExtensibleConverter
     Public Shared Function BooleanToVisibilityConverter() As SingleConverter(Of Boolean, Visibility)
 
         Return CreateConverter(
-            convert:=Function(input As Boolean) If(input, Visibility.Visible, Visibility.Collapsed),
-            convertBack:=Function(input As Visibility) input = Visibility.Visible
+            convertFunction:=Function(input As Boolean) If(input, Visibility.Visible, Visibility.Collapsed),
+            convertBackFunction:=Function(input As Visibility) input = Visibility.Visible
             )
 
     End Function
@@ -39,13 +39,13 @@ Public Class MyConverters : Inherits ExtensibleConverter
 
     Public Shared Function CombineBooleansToVisibilityConverter() As MultiConverter(Of Boolean, Visibility)
         Return CreateMultiConverter(Of Boolean, Visibility)(
-        convert:=Function(values As Boolean())
-                     Dim firstBoolean = values(0)
-                     Dim secondBoolean = values(1)
-                     Dim result = firstBoolean AndAlso secondBoolean
-                     Return If(result, Visibility.Visible, Visibility.Collapsed)
-                 End Function,
-        convertBack:=Nothing ' Optional: Define if needed
+        convertFunction:=Function(values As Boolean())
+                             Dim firstBoolean = values(0)
+                             Dim secondBoolean = values(1)
+                             Dim result = firstBoolean AndAlso secondBoolean
+                             Return If(result, Visibility.Visible, Visibility.Collapsed)
+                         End Function,
+        convertBackFunction:=Nothing ' Optional: Define if needed
     )
     End Function
 
