@@ -4,17 +4,10 @@ Functional Converters is a library that allows you to define converters using a 
 
 Designed for WPF, may work with UWP and MAUI, but not tested yet.
 
-```csharp
-//Converts a boolean to visibility, and provides a ConvertBack method
-
-```
 &nbsp;
-
-&nbsp;
-
 
 ## Class Setup
-All custom converters inherit from the ExtensibleConverter class. You only need one class, but you can define more if you wish.
+All custom converters inherit from the ExtensibleConverter class. You only need one class that contains all converters, but you can define more if you wish.
 
 ```csharp
 
@@ -192,7 +185,7 @@ I am not totally familiar with the MarkupExtension class, but I *think* this is 
 
 As far as the actual converter performance once initialised, here's the results of benchmarking with BenchmarkDotNet:
 
-```json
+```powershell
 | Method                    | Mean     | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
 |-------------------------- |---------:|---------:|---------:|------:|-------:|----------:|------------:|
 | IValueConverter*          | 23.68 ns | 1.453 ns | 0.080 ns |  1.00 | 0.0029 |      48 B |        1.00 |
