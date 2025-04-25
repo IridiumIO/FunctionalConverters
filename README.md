@@ -109,7 +109,7 @@ public static MultiConverter<bool, Visibility> MultiBoolToVisibility()
 
 ## Helper Method
 Notice in all the above examples, you have to include the `object parameter` in the function signature. 
-FunctionalConverters provides a helper `CreateConverter` method that can abstract some of this away and make it even simpler to define your converters.
+FunctionalConverters provides helper `CreateConverter` and `CreateMultiConverter` methods that can abstract some of this away and make it even simpler to define your converters.
 
 ```csharp
 //Not using the helper method
@@ -131,7 +131,6 @@ public static SingleConverter<bool, Visibility> BooleanToVisibility()
 
 ```
 
-The `CreateConverter` method has overloads for `SingleConverter` and `MultiConverter`:
 &nbsp;
 
 &nbsp;
